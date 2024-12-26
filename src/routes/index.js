@@ -18,11 +18,11 @@ router.post('/signup', async(req, res) => {
     const user = await User.findOne({ where: { email: email } });
 
     if(user){
-        res.status(400).send('User already exists');
+        res.status(400).json({message:'User already exists'});
         return;
     }
     await User.create({ email, password });
-    res.status(201).send('User created'); 
+    res.status(201).json({message:'User created'}); 
 }
 catch(e){
     console.error(e);
