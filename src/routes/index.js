@@ -20,6 +20,7 @@ router.post('/signup', async(req, res) => {
         return;
     }
     await User.create({ email, password });
+    res.status(201).send('User created'); 
 });
 
 
