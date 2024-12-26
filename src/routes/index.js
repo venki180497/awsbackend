@@ -9,17 +9,17 @@ router.get('/', (req, res) => {
 });
 
 router.post('/signup', async(req, res) => {
-    const { username, password } = req.body;
-    if (!username || !password) {
-        res.status(400).send('Username and password are required');
+    const { email, password } = req.body;
+    if (!email || !password) {
+        res.status(400).send('email and password are required');
         return;
     }
-    const user = User.findOne({ where: { username: username } });
+    const user = User.findOne({ where: { email: username } });
     if(user){
         res.status(400).send('User already exists');
         return;
     }
-    await User.create({ username, password });
+    await User.create({ email, password });
 });
 
 
