@@ -15,7 +15,8 @@ router.post('/signup', async(req, res) => {
         res.status(400).send('email and password are required');
         return;
     }
-    const user = User.findOne({ where: { email: email } });
+    const user = await User.findOne({ where: { email: email } });
+
     if(user){
         res.status(400).send('User already exists');
         return;
