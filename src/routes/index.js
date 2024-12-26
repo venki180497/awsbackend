@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/signup', async(req, res) => {
+    try{
     const { email, password } = req.body;
     if (!email || !password) {
         res.status(400).send('email and password are required');
@@ -21,6 +22,11 @@ router.post('/signup', async(req, res) => {
     }
     await User.create({ email, password });
     res.status(201).send('User created'); 
+}
+catch(e){
+    console.error(e);
+    res.status(500).json({message:e.message});
+}
 });
 
 
